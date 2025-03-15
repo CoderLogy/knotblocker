@@ -1,16 +1,34 @@
 //LOCK by Sourceboxtv
 document.getElementById("generateButton").addEventListener("click", async () => {
     try {
-        // Replace this with actual API call and model code
-        const adName = "mcdonalds.jpg"; // Example ad name
-        const prompt = `Generate a pun about ${adName} where AI humorously complains about being charged too much for ads, saying something like, "You’re ripping my company off! I paid so much money for this!"`;
+        const apiKey = "AIzaSyCzB9WKTpbtITUut1hTZzSV72aoMbL990A"; // Your actual API key
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+        const prompt = `Generate a pun about ads where AI humorously complains about being charged too much for ads, saying something like, "You’re ripping my company off! I paid so much money for this!"`;
+        const requestBody = {
+            contents: [{
+                parts: [{ text: prompt}]
+            }]
+        };
 
-        const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" });
-        const result = await model.generateContent(prompt);
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestBody),
+        });
 
-        // Display the generated pun in the <p> element
-        document.getElementById("punText").innerText = result.response.text();
+        const data = await response.json();
+
+        if (response.ok) {
+            const generatedText = data.contents[0].parts[0].text; // Adjust this based on the actual response structure
+            document.getElementById("contentText").innerText = generatedText;
+        } else {
+            document.getElementById("contentText").innerText = `Error: ${data.error.message}`;
+        }
+
     } catch (error) {
-        console.error("Error generating pun:", error);
+        console.error('Error:', error);
+        document.getElementById("contentText").innerText = 'Error generating content.';
     }
 });
