@@ -15,6 +15,6 @@ function getRandomInt(min, max) {
 function resetAd(count) {
     console.log(count)
     adBlk2 = document.getElementById("ad"+count);
-    adBlk2.innerHTML = '<div id="ad'+count+'" onclick="resetAd('+count+')"><img src="imgs/'+ arr[getRandomInt(0,arr.length)] +'" style="max-width:100%; max-height:100%;" alt="Advertisement"></div>'
+    adBlk2.innerHTML = '<img src="imgs/'+ arr[getRandomInt(0,arr.length-1)] +'" style="max-width:100%; max-height:100%;" alt="Advertisement">'
 }
 // UNLOCK by Jamie
