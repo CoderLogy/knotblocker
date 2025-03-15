@@ -1,16 +1,43 @@
-.png1 {
+.png0 {
     width: 500px;
+    height: 300px;
+}
+.png1 {
+    width: 300px;
+    height: 400px;
 }
 
-.png5 {
+.png2 {
     width: 400px;
+    height: 400px;
 }
-
-.png10 {
+.png3 {
+    width: 700px;
+    height: 400px;
+}
+.png4 {
+    width: 250px;
+}
+.png5 {
     width: 300px;
 }
-
-.png {
-    width: 100px;
-    height: 10px;
+.png6 {
+    width: 300px;
+}
+.png7 {
+    width: 300px;
+}
+.png8 {
+    width: 300px;
+}
+.png9 {
+    width: 200px;
+    height: 400px;
+}
+.png10 {
+    width: 500px;
+}
+.png11 {
+    width: 300px;
+    
 }
