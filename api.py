@@ -1,9 +1,11 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request,render_template,send_from_directory
 from google import genai
-
+import os
 app = Flask(__name__)
-
 API_KEY = "AIzaSyCzB9WKTpbtITUut1hTZzSV72aoMbL990A"
+@app.route('/')
+def index():
+    return render_template('index.html')
 @app.route('/generate-pun', methods=['POST'])
 def generate_pun():
     try:
@@ -20,6 +22,5 @@ def generate_pun():
         return jsonify({'text': cleaned_text})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
 if __name__ == '__main__':
     app.run(debug=True,port=5500)  # Set debug to False in production
