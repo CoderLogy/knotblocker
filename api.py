@@ -23,4 +23,4 @@ def generate_pun():
     except Exception as e:
         return jsonify({'error': str(e)}), 500
 if __name__ == '__main__':
-    app.run(debug=True)  # Set debug to False in production
+    app.run(debug=True,host=0.0.0.0)  # Set debug to False in production
