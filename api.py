@@ -1,8 +1,11 @@
 from flask import Flask, jsonify, request,render_template,send_from_directory
 from google import genai
 import os
+from dotenv import load_dotenv
+
 app = Flask(__name__)
-API_KEY = "AIzaSyCzB9WKTpbtITUut1hTZzSV72aoMbL990A"
+load_dotenv()
+API_KEY = os.getenv('API_KEY')
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -18,7 +21,7 @@ def generate_pun():
         response = client.models.generate_content(
             model="gemini-2.0-flash", contents=prompt
         )
-        cleaned_text = response.text.replace("*", "")
+        cleaned_text = response.text.replace("*", "").replace('"', "")
         return jsonify({'text': cleaned_text})
     except Exception as e:
         return jsonify({'error': str(e)}), 500
